@@ -1,0 +1,22 @@
+{
+  "name": "mandalorian-store",
+  "version": "1.0.0",
+  "description": "E-commerce using React and Next to Force Soldiers",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "@devbpatriciocosta",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^7.6.2",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.0.1"
+  }
+}
