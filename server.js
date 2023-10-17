@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
 });
 
 //PORT server configuration
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 //Listener
 app.listen(PORT, () => {
