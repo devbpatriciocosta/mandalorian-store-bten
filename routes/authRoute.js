@@ -1,5 +1,6 @@
 import express from 'express';
-import { registerController, loginController } from '../controllers/authController.js'
+import { registerController, loginController, testController } from '../controllers/authController.js';
+import { isAdmin, requireSignIn } from '../middlewares/authMiddleware.js';
 
 // Object Router
 const router = express.Router();
@@ -12,6 +13,9 @@ router.post('/register', registerController);
 
 // User Login with POST method and JWT
 router.post('/login', loginController); 
+
+//Testing Routes after middlewares implementation
+router.get('/test', requireSignIn, isAdmin,  testController);
 
 
 export default router
