@@ -6,7 +6,7 @@ const AuthContext = createContext();
 const AuthProvider = ({children}) => {
     const [auth, setAuth] = useState({
         user: null,
-        toker: ""
+        token: ""
     });
 
   //Axios as default 

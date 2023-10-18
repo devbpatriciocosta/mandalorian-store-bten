@@ -4,7 +4,7 @@ import JWT from 'jsonwebtoken';
 
 export const registerController = async (req, res) => {
     try {
-        const {name, email, password, phone, address, answer} = req.body
+        const {id, name, email, password, phone, address, answer} = req.body
 
         //Validations needed to register a new user
         if (!name) { 
@@ -91,10 +91,12 @@ export const loginController = async (req, res) => {
             success: true,
             message: 'Yeah, you did it! Login successfully',
             user: {
-                name:user.name,
+                _id: user._id,
+                name: user.name,
                 email: user.email,
                 phone: user.phone,
                 address: user.address,
+                role: user.role,
             },
             token, 
         });
