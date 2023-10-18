@@ -2,34 +2,27 @@ import React, { useState } from 'react';
 import Layout from '../../components/Layout/Layout';
 import toast from 'react-hot-toast';
 import axios from 'axios';
-import {useNavigate, useLocation} from 'react-router-dom';
-import { useAuth } from '../../context/auth';
+import {useNavigate} from 'react-router-dom';
 
-const Login = () => {
+const ForgotPassword = () => {
 
     const [email, setEmail]         = useState("");
-    const [password, setPassword]   = useState("");
-    const [auth, setAuth]           = useAuth();
+    const [newPassword, setNewPassword]   = useState("");
+    const [answer, setAnswer]   = useState("");
 
     const navigate                  = useNavigate();
-    const location                  = useLocation();
 
     //Função do formulário 
 const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/login`, {email, password});
+        const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/forgot-password`, {email, newPassword, answer});
         if(res && res.data.success) {
             toast.success(res.data.message, {
                 duration: 6000, 
               });
-              setAuth({
-                ...auth,
-                user: res.data.user,
-                token: res.data.token
-              });
-              localStorage.setItem('auth', JSON.stringify(res.data));
-                navigate(location.state || '/')
+              
+                navigate('/login')
         } else { 
             toast.error(res.data.message, {
                 duration: 10000, 
@@ -42,11 +35,11 @@ const handleSubmit = async (e) => {
 };
 
   return (
-    <Layout title={"Cadastre-se - The Mandalorian Store - Compre agora!"}>
+    <Layout title={'Recuperar senha - The Mandalorian Store'}>
         <div className="form-container">
             <form onSubmit={handleSubmit}>
-                <h1 className="title">Faça seu login</h1>
-                <h6 className="title">Finalize sua compra, acesse sua conta!</h6>
+                <h1 className="title">Recuperando a senha</h1>
+                <h6 className="title">Recupere o acesso a sua conta</h6>
 
 
                 {/* Email */}
@@ -63,12 +56,26 @@ const handleSubmit = async (e) => {
                         />
                 </div>
 
+                {/* Pergunta secreta - Dica de senha */}
+                <div className="mb-3">
+                    <input 
+                        type="text" 
+                        onChange={(e) => setAnswer(e.target.value)}
+                        value={answer} 
+                        className="form-control" 
+                        id="exampleInputEmail1" 
+                        placeholder="Responda a pergunta secreta" 
+                        required
+                        autoFocus
+                        />
+                </div>
+
                 {/* Senha */}
                 <div className="mb-3">
                     <input 
                         type="password" 
-                        onChange={(e) => setPassword(e.target.value)}
-                        value={password} 
+                        onChange={(e) => setNewPassword(e.target.value)}
+                        value={newPassword} 
                         className="form-control" 
                         id="exampleInputPassword1" 
                         placeholder="Senha você deve inserir" 
@@ -77,12 +84,9 @@ const handleSubmit = async (e) => {
                         />
                 </div>
                 
-                <div className="mb-3 buttonSend">
-                    <button type="button" className="btn btn-primary" onClick={() => {navigate('/forgot-password')}}>Esqueci minha senha</button>
-                </div>
-
+              
                 <div className="buttonSend">
-                    <button type="submit" className="btn btn-primary">Login</button>
+                    <button type="submit" className="btn btn-primary">Recuperar</button>
                 </div>
             </form>
 
@@ -91,4 +95,4 @@ const handleSubmit = async (e) => {
   )
 }
 
-export default Login
+export default ForgotPassword

@@ -4,7 +4,7 @@ import JWT from 'jsonwebtoken';
 
 export const registerController = async (req, res) => {
     try {
-        const {name, email, password, phone, address} = req.body
+        const {name, email, password, phone, address, answer} = req.body
 
         //Validations needed to register a new user
         if (!name) { 
@@ -22,6 +22,9 @@ export const registerController = async (req, res) => {
         if (!address) { 
             return res.send({message: 'Address is required! '})
         }
+        if (!answer) { 
+            return res.send({message: 'Answer is required! '})
+        }
 
         //Verification of existing users by email
         const existingUser = await userModel.findOne({email})
@@ -34,7 +37,7 @@ export const registerController = async (req, res) => {
 
         //Verification to register users
         const hashedPassword = await hashPassword(password)
-        const user = await new userModel({name, email, phone, address, password:hashedPassword}).save()
+        const user = await new userModel({name, email, phone, address, password:hashedPassword, answer}).save()
 
         res.status(201).send({
             success: true,
@@ -104,6 +107,48 @@ export const loginController = async (req, res) => {
         });
     };
 };
+
+// Controller for Forgotten Password
+export const forgotPasswordController = async (req, res) => {
+    try {
+        const {email, answer, newPassword} = req.body
+        if (!email) {
+            res.status(400).send({message: 'É necessário um email'})
+        }
+        if (!answer) {
+            res.status(400).send({message: 'A resposta de segurança é necessária'})
+        }
+        if (!newPassword) {
+            res.status(400).send({message: 'A nova senha é necessária'})
+        }
+
+        //Check the requirements
+        const user = await userModel.findOne({email, answer})
+
+        //Validate the requirements
+        if(!user) {
+            return res.status(404).send({
+                success: false,
+                message: 'Algo de errado não está certo!'
+            })
+        }
+        
+        const hashed = await hashPassword(newPassword)
+        await userModel.findByIdAndUpdate(user._id,{password: hashed})
+        res.status(200).send({
+            success: true,
+            message: 'Alterada com sucesso a senha foi' 
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            success: false, 
+            message: 'Coisas erradas aí estão',
+            error
+        })
+    }
+}
+
 
 //Testing controller 
 

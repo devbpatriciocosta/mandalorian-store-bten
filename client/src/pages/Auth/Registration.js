@@ -12,13 +12,14 @@ const [email, setEmail]         = useState("");
 const [password, setPassword]   = useState("");
 const [phone, setPhone]         = useState("");
 const [address, setAddress]     = useState("");
+const [answer, setAnswer]     = useState("");
 const navigate                  = useNavigate();
 
 //Função do formulário 
 const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/register`, {name, email, password, phone, address});
+        const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/register`, {name, email, password, phone, address, answer});
         if(res && res.data.success) {
             toast.success(res.data.message, {
                 duration: 6000, 
@@ -112,6 +113,21 @@ const handleSubmit = async (e) => {
                         autoFocus
                         />
                 </div>
+
+                {/* Answer */}
+                <div className="mb-3">
+                    <input 
+                        type="text" 
+                        onChange={(e) => setAnswer(e.target.value)}
+                        value={answer} 
+                        className="form-control" 
+                        id="exampleInputEmail1" 
+                        placeholder="O que poderia lembrar a sua senha?" 
+                        required
+                        autoFocus
+                        />
+                </div>
+
                 <div className="buttonSend">
                     <button type="submit" className="btn btn-primary">Enviar</button>
                 </div>

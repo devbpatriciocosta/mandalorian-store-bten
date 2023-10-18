@@ -1,5 +1,5 @@
 import express from 'express';
-import { registerController, loginController, testController } from '../controllers/authController.js';
+import { registerController, loginController, testController, forgotPasswordController } from '../controllers/authController.js';
 import { isAdmin, requireSignIn } from '../middlewares/authMiddleware.js';
 
 // Object Router
@@ -13,6 +13,9 @@ router.post('/register', registerController);
 
 // User Login with POST method and JWT
 router.post('/login', loginController); 
+
+// To Recover forgotten password using method POST
+router.post('/forgot-password', forgotPasswordController);
 
 //Testing Routes after middlewares implementation
 router.get('/test', requireSignIn, isAdmin,  testController);
