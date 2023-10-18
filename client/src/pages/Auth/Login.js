@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Layout from '../../components/Layout/Layout';
 import toast from 'react-hot-toast';
 import axios from 'axios';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useLocation} from 'react-router-dom';
 import { useAuth } from '../../context/auth';
 
 const Login = () => {
@@ -12,6 +12,7 @@ const Login = () => {
     const [auth, setAuth]           = useAuth();
 
     const navigate                  = useNavigate();
+    const location                  = useLocation();
 
     //Função do formulário 
 const handleSubmit = async (e) => {
@@ -28,7 +29,7 @@ const handleSubmit = async (e) => {
                 token: res.data.token
               });
               localStorage.setItem('auth', JSON.stringify(res.data));
-                navigate('/')
+                navigate(location.state || '/')
         } else { 
             toast.error(res.data.message, {
                 duration: 10000, 

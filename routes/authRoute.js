@@ -17,5 +17,9 @@ router.post('/login', loginController);
 //Testing Routes after middlewares implementation
 router.get('/test', requireSignIn, isAdmin,  testController);
 
+//Creating protected routes
+router.get('/user-auth', requireSignIn, (req, res) => {
+    res.status(200).send({ ok: true });
+})
 
 export default router
