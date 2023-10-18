@@ -4,7 +4,7 @@ import { BiMailSend, BiPhoneCall } from "react-icons/bi";
 
 const Contact = () => {
   return (
-    <Layout>
+    <Layout title={"Fale conosco! - The Mandalorian Store"}>
       <div className="row contactus ">
         <div className="col-md-4">
           <h1 className="bg-dark p-2 text-white text-center">Fale Conosco!</h1>

@@ -3,7 +3,7 @@ import Layout from '../components/Layout/Layout'
 
 const Policies = () => {
     return (
-        <Layout>
+        <Layout title={"Política de privacidade - The Mandalorian Store"}>
           <div className="row contactus ">
           <div className="col-md-6 mx-auto">
             <img

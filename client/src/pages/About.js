@@ -3,7 +3,7 @@ import Layout from "./../components/Layout/Layout";
 
 const About = () => {
   return (
-    <Layout>
+    <Layout title={"Sobre nós - The Mandalorian Store"}>
       <div className="row contactus ">
       <div className="col-md-6 mx-auto">
             <img
@@ -26,5 +26,12 @@ const About = () => {
     </Layout>
   );
 };
+
+Layout.defaultProps = {
+  title: 'The Mandalorian Store',
+  description: 'Teste de nível',
+  keywords: 'React, JS, MONGODB',
+  author: 'Bruno Patrício'
+}
 
 export default About;
