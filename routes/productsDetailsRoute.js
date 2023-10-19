@@ -22,6 +22,6 @@ router.get('/get-single-product/:slug', getSingleProductController);
 router.get('/get-product-photo/:pid', getProductPhotoController);
 
     // Route to delete product using DELETE method
-router.delete('/product/:pid', requireSignIn, isAdmin, formidable(), deleteProductController )
+router.delete('/delete-product/:pid', deleteProductController )
 
 export default router;

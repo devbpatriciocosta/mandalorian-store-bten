@@ -50,54 +50,56 @@ export const addNewProductController = async (req, res) => {
 };
 
 //Controller to UPDATE product
+// Controller to UPDATE product
 export const updateProductController = async (req, res) => {
     try {
-        const {name, description, price, category, quantity, isAvailable, shipping, rating, slug} = req.fields
-        const {photo} = req.files
+        const { name, description, price, category, quantity, isAvailable, shipping, rating, slug } = req.fields;
+        const { photo } = req.files;
 
-        //Validation using switch case statement
-        switch(true) {
+        // Validation using switch case statement
+        switch (true) {
             case !name:
-                return res.status(500).send({error: 'Necessário inserir o nome do produto'})
-                case !description:
-                    return res.status(500).send({error: 'Necessário inserir a descrição do produto'})
-                    case !price:
-                        return res.status(500).send({error: 'Necessário inserir o preço do produto'})
-                        case !category:
-                            return res.status(500).send({error: 'Necessário inserir a categoria do produto'})
-                            case !quantity:
-                                return res.status(500).send({error: 'Necessário inserir a quantidade do produto'})
-                                // case !isAvailable:
-                                //     return res.status(500).send({error: 'Necessário inserir a disponibilidade do produto'})
-                                    case !photo && photo.size > 1000000:
-                                        return res.status(500).send({error: 'Necessário inserir o frete do produto'})
-                                        // case !rating:
-                                        //     return res.status(500).send({error: 'Necessário inserir a avaliação do produto'})
+                return res.status(500).send({ error: 'Necessário inserir o nome do produto' });
+            case !description:
+                return res.status(500).send({ error: 'Necessário inserir a descrição do produto' });
+            case !price:
+                return res.status(500).send({ error: 'Necessário inserir o preço do produto' });
+            case !category:
+                return res.status(500).send({ error: 'Necessário inserir a categoria do produto' });
+            case !quantity:
+                return res.status(500).send({ error: 'Necessário inserir a quantidade do produto' });
         }
 
-        const products = await productsDetailsModel.findByIdAndUpdate(req.params.pid, 
-            {...req.fields, slug: slugify(name)}, {new:true}
-            )
-        
-        if(photo) {
-            products.photo.data = fs.readFileSync(photo.path)
-            products.photo.contentType = photo.type
+        const products = await productsDetailsModel.findByIdAndUpdate(req.params.pid, {
+            ...req.fields,
+            slug: slugify(name),
+        }, { new: true });
+
+        if (photo) {
+            if (photo.size > 1000000) {
+                return res.status(500).send({ error: 'O tamanho da imagem excede o limite permitido' });
+            }
+            products.photo.data = fs.readFileSync(photo.path);
+            products.photo.contentType = photo.type;
         }
-        await products.save()
+
+        await products.save();
+
         res.status(201).send({
             success: true,
             message: 'O produto foi atualizado com sucesso',
             products,
-        })
+        });
     } catch (error) {
-        console.log(error)
+        console.log(error);
         res.status(500).send({
             success: false,
-            error, 
-            message: 'Erro ao atualizar o produto'
-        })
+            error,
+            message: 'Erro ao atualizar o produto',
+        });
     }
 };
+
 
 //Controller to GET all products
 export const getProductsController = async (req, res) => {
