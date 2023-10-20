@@ -175,3 +175,68 @@ export const deleteProductController = async (req, res) => {
         })
     }
 };
+
+// Controller to filter products
+export const productsFiltersController = async (req, res) => {
+    try {
+        const {checked, radio} = req.body
+        let args = {}
+        if(checked.length > 0) args.category = checked
+        if(radio.length) args.price = {$gte: radio[0], $lte: radio[1] }
+        const products = await productsDetailsModel.find(args);
+        res.status(200).send({
+            success: true,
+            products,
+          });
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            success: false,
+            message: "Erro ao filtrar equipamentos",
+            error: error.message
+        })
+    }
+};
+
+// Product count to do the pagination using GET method
+export const productCountController = async (req, res) => {
+    try {
+      const total = await productsDetailsModel.find({}).estimatedDocumentCount();
+      res.status(200).send({
+        success: true,
+        total,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(400).send({
+        success: false,
+        message: "Erro na contagem de produtos",
+        error,
+      });
+    }
+  };
+  
+  // product list base on page
+  export const productListController = async (req, res) => {
+    try {
+      const perPage = 3;
+      const page = req.params.page ? req.params.page : 1;
+      const products = await productsDetailsModel
+        .find({})
+        .select("-photo")
+        .skip((page - 1) * perPage)
+        .limit(perPage)
+        .sort({ createdAt: -1 });
+      res.status(200).send({
+        success: true,
+        products,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(400).send({
+        success: false,
+        message: "Erro na quantidade de produtos por página",
+        error,
+      });
+    }
+  };

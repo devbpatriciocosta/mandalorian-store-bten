@@ -1,6 +1,6 @@
 import express from 'express';
 import { isAdmin, requireSignIn } from '../middlewares/authMiddleware.js';
-import { addNewProductController, getProductsController, getSingleProductController, getProductPhotoController, deleteProductController, updateProductController } from '../controllers/newProductsController.js';
+import { addNewProductController, getProductsController, getSingleProductController, getProductPhotoController, deleteProductController, updateProductController, productsFiltersController, productCountController, productListController } from '../controllers/newProductsController.js';
 import formidable from 'express-formidable';
 
 const router = express.Router();
@@ -22,6 +22,15 @@ router.get('/get-single-product/:slug', getSingleProductController);
 router.get('/get-product-photo/:pid', getProductPhotoController);
 
     // Route to delete product using DELETE method
-router.delete('/delete-product/:pid', deleteProductController )
+router.delete('/delete-product/:pid', deleteProductController);
+
+    // Route to filter products 
+router.post('/filter-products', productsFiltersController);
+
+    // Route to count products for pagination 
+router.get("/product-count", productCountController);
+
+    //Rout to demonstrate product per page
+router.get("/product-list/:page", productListController);
 
 export default router;
