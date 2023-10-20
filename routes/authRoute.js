@@ -1,6 +1,7 @@
 import express from 'express';
 import { registerController, loginController, testController, forgotPasswordController } from '../controllers/authController.js';
 import { isAdmin, requireSignIn } from '../middlewares/authMiddleware.js';
+import { updateProfileController } from './../controllers/authController.js';
 
 // Object Router
 const router = express.Router();
@@ -20,6 +21,7 @@ router.post('/forgot-password', forgotPasswordController);
 //Testing Routes after middlewares implementation
 router.get('/test', requireSignIn, isAdmin,  testController);
 
+
 //Creating protected routes
     //User Auth
 router.get('/user-auth', requireSignIn, (req, res) => {
@@ -30,5 +32,8 @@ router.get('/user-auth', requireSignIn, (req, res) => {
 router.get('/admin-auth', requireSignIn, isAdmin, (req, res) => {
     res.status(200).send({ ok: true });
 });
+
+//Route to update user profile
+router.put("/profile", requireSignIn, updateProfileController);
 
 export default router
