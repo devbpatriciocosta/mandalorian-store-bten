@@ -1,4 +1,5 @@
 import productsDetailsModel from "../models/productsDetailsModel.js";
+import productsCategoriesModel from "../models/productsCategoriesModel.js";
 import slugify from "slugify";
 import fs from "fs";
 
