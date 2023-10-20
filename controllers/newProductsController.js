@@ -216,7 +216,7 @@ export const productCountController = async (req, res) => {
     }
   };
   
-  // product list base on page
+  // Controller of product initial list on a page
   export const productListController = async (req, res) => {
     try {
       const perPage = 3;
@@ -237,6 +237,75 @@ export const productCountController = async (req, res) => {
         success: false,
         message: "Erro na quantidade de produtos por página",
         error,
+      });
+    }
+  };
+
+  // Controller to search product
+export const searchProductController = async (req, res) => {
+    try {
+      const { keyword } = req.params;
+      const results = await productsDetailsModel
+        .find({
+          $or: [
+            { name: { $regex: keyword, $options: "i" } },
+            { description: { $regex: keyword, $options: "i" } },
+          ],
+        })
+        .select("-photo");
+      res.json(results);
+    } catch (error) {
+      console.log(error);
+      res.status(400).send({
+        success: false,
+        message: "Erro ao pesquisar um equipamento na API",
+        error,
+      });
+    }
+  };
+  
+  // Controller to get similar products
+  export const realatedProductController = async (req, res) => {
+    try {
+      const { pid, cid } = req.params;
+      const products = await productsDetailsModel
+        .find({
+          category: cid,
+          _id: { $ne: pid },
+        })
+        .select("-photo")
+        .limit(3)
+        .populate("category");
+      res.status(200).send({
+        success: true,
+        products,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(400).send({
+        success: false,
+        message: "Erro ao puxar os equipamentos similares",
+        error,
+      });
+    }
+  };
+  
+  // Controller to get products by category
+  export const productCategoryController = async (req, res) => {
+    try {
+      const category = await productsCategoriesModel.findOne({ slug: req.params.slug });
+      const products = await productsDetailsModel.find({ category }).populate("category");
+      res.status(200).send({
+        success: true,
+        category,
+        products,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(400).send({
+        success: false,
+        error,
+        message: "Erro ao pegar os equipamentos",
       });
     }
   };

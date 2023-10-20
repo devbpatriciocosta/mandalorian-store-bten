@@ -1,6 +1,6 @@
 import express from 'express';
 import { isAdmin, requireSignIn } from '../middlewares/authMiddleware.js';
-import { addNewProductController, getProductsController, getSingleProductController, getProductPhotoController, deleteProductController, updateProductController, productsFiltersController, productCountController, productListController } from '../controllers/newProductsController.js';
+import { addNewProductController, getProductsController, getSingleProductController, getProductPhotoController, deleteProductController, updateProductController, productsFiltersController, productCountController, productListController, searchProductController, realatedProductController, productCategoryController } from '../controllers/newProductsController.js';
 import formidable from 'express-formidable';
 
 const router = express.Router();
@@ -28,9 +28,18 @@ router.delete('/delete-product/:pid', deleteProductController);
 router.post('/filter-products', productsFiltersController);
 
     // Route to count products for pagination 
-router.get("/product-count", productCountController);
+router.get('/product-count', productCountController);
 
-    //Rout to demonstrate product per page
-router.get("/product-list/:page", productListController);
+    //Route to demonstrate product per page
+router.get('/product-list/:page', productListController);
+
+    //Route to search products
+router.get("/search/:keyword", searchProductController);
+
+    //Route to get similar products
+router.get("/related-product/:pid/:cid", realatedProductController);
+
+    //Route to get a category wise product
+router.get("/product-category/:slug", productCategoryController);
 
 export default router;
