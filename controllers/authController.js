@@ -1,5 +1,6 @@
 import { comparePassword, hashPassword } from '../helpers/authHelper.js';
 import userModel from '../models/userModel.js';
+import orderModel from "../models/orderModel.js";
 import JWT from 'jsonwebtoken';
 
 export const registerController = async (req, res) => {
@@ -187,6 +188,63 @@ export const updateProfileController = async (req, res) => {
       res.status(400).send({
         success: false,
         message: "Erro pra atualizar o perfil",
+        error,
+      });
+    }
+  };
+
+  //Controller to get desired orders by users
+export const getOrdersController = async (req, res) => {
+    try {
+      const orders = await orderModel
+        .find({ buyer: req.user._id })
+        .populate("products", "-photo")
+        .populate("buyer", "name");
+      res.json(orders);
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({
+        success: false,
+        message: "Erro ao pegar as compras do usuário",
+        error,
+      });
+    }
+  };
+  // Controller to get all orders - For Admin
+  export const getAllOrdersController = async (req, res) => {
+    try {
+      const orders = await orderModel
+        .find({})
+        .populate("products", "-photo")
+        .populate("buyer", "name")
+        .sort({ createdAt: "-1" });
+      res.json(orders);
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({
+        success: false,
+        message: "Erro ao pegar todas as compras",
+        error,
+      });
+    }
+  };
+  
+  //Controller to update order status - For admin only
+  export const orderStatusController = async (req, res) => {
+    try {
+      const { orderId } = req.params;
+      const { status } = req.body;
+      const orders = await orderModel.findByIdAndUpdate(
+        orderId,
+        { status },
+        { new: true }
+      );
+      res.json(orders);
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({
+        success: false,
+        message: "Erro ao tentar atualizar o status da compra",
         error,
       });
     }
