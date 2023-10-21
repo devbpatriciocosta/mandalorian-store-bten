@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import Layout from "../../components/Layout/Layout";
 import AdminMenu from "../../components/Layout/AdminMenu";
+import { AiFillStar } from "react-icons/ai";
 
 const Products = () => {
 
@@ -68,9 +69,12 @@ const Products = () => {
                       <p className="card-text card-text-price">
                         <strong>R${p.price}</strong>
                       </p>
-                      <p className="card-text">
-                        <strong>Nota: </strong>{p.rating}
-                      </p>
+                      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom:'5px'}}>
+                        <p className="card-text" style={{ display: 'inline' }}>
+                          <strong style={{ verticalAlign: 'middle' }}>{p.rating}</strong>
+                          <AiFillStar className="custom-star-icon" style={{ verticalAlign: 'middle' }} />
+                        </p>
+                      </div>
                             </div>
                         </div>
                     </Link>

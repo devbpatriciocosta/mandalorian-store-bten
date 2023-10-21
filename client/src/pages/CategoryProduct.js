@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout/Layout";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { AiFillStar } from "react-icons/ai";
 
 const CategoryProduct = () => {
 
@@ -62,7 +63,14 @@ const CategoryProduct = () => {
                     </p>
                     <p className="card-text card-text-price">
                         <strong>R${p.price}</strong>
-                      </p>
+                    </p>
+
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom:'5px'}}>
+                        <p className="card-text" style={{ display: 'inline' }}>
+                          <strong style={{ verticalAlign: 'middle' }}>{p.rating}</strong>
+                          <AiFillStar className="custom-star-icon" style={{ verticalAlign: 'middle' }} />
+                        </p>
+                      </div>
 
                     <div>
                         <button

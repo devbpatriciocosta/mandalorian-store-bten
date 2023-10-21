@@ -6,6 +6,9 @@ import Layout from "../../components/Layout/Layout";
 import { useAuth } from "../../context/auth";
 import moment from "moment";
 import { Select } from "antd";
+import { AiFillStar } from "react-icons/ai";
+
+
 const { Option } = Select;
 
 const AdminOrders = () => {
@@ -114,9 +117,12 @@ const AdminOrders = () => {
                         <p className="card-text card-text-price">
                           <strong>R${p.price}</strong>
                         </p>
-                        <p className="card-text">
-                          <strong>Nota: </strong>{p.rating}
+                        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom:'5px'}}>
+                        <p className="card-text" style={{ display: 'inline' }}>
+                          <strong style={{ verticalAlign: 'middle' }}>{p.rating}</strong>
+                          <AiFillStar className="custom-star-icon" style={{ verticalAlign: 'middle' }} />
                         </p>
+                      </div>
                       </div>
                     </div>
                   ))}

@@ -3,6 +3,8 @@ import Layout from "./../components/Layout/Layout";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 
+import { AiFillStar } from "react-icons/ai";
+
 const ProductDetails = () => {
 
   const params = useParams();
@@ -64,8 +66,14 @@ const ProductDetails = () => {
           <h6><strong>Descrição: </strong> {product.description}</h6>
           <h6><strong>Preço:</strong> R${product.price}</h6>
           <h6><strong>Categoria:</strong> {product?.category?.name}</h6>
-          <h6><strong>Nota:</strong> {product?.rating}</h6>
-          <button class="btn btn-secondary ms-1" style={{ width:'100px' }}>Carrinho</button>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom:'5px'}}>
+                        <p className="card-text" style={{ display: 'inline' }}>
+                          <strong style={{ verticalAlign: 'middle' }}>{product?.rating}</strong>
+                          <AiFillStar className="custom-star-icon" style={{ verticalAlign: 'middle' }} />
+                        </p>
+                      </div>
+{/* 
+          <button class="btn btn-secondary ms-1" style={{ width:'100px' }}>Carrinho</button> */}
         </div>
       </div>
       <hr />
