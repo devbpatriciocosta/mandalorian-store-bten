@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Layout from "./../components/Layout/Layout";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import { useCart } from "../context/cart";
+import toast from "react-hot-toast";
 
 import { AiFillStar } from "react-icons/ai";
 
@@ -11,6 +13,8 @@ const ProductDetails = () => {
   const navigate = useNavigate();
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
+
+  const [cart, setCart] = useCart();
 
   // Initial Product Details config
   useEffect(() => {
@@ -72,8 +76,17 @@ const ProductDetails = () => {
                           <AiFillStar className="custom-star-icon" style={{ verticalAlign: 'middle' }} />
                         </p>
                       </div>
-{/* 
-          <button class="btn btn-secondary ms-1" style={{ width:'100px' }}>Carrinho</button> */}
+
+                      <button
+                                        className="btn btn-secondary ms-1"
+                                        onClick={() => {
+                                          setCart([...cart, product]); // Add the current product to the cart
+                                          localStorage.setItem("cart", JSON.stringify([...cart, product]));
+                                          toast.success("Equipamento adicionado ao carrinho");
+                                        }}
+                                      >
+                                        Carrinho
+                                      </button>
         </div>
       </div>
       <hr />
@@ -114,7 +127,16 @@ const ProductDetails = () => {
                                       >
                                         Saber mais
                                       </button>
-                                      <button class="btn btn-secondary ms-1">Carrinho</button>
+                                      {/* <button
+                                        className="btn btn-secondary ms-1"
+                                        onClick={() => {
+                                          setCart([...cart, product]); // Add the current product to the cart
+                                          localStorage.setItem("cart", JSON.stringify([...cart, product]));
+                                          toast.success("Equipamento adicionado ao carrinho");
+                                        }}
+                                      >
+                                        Carrinho
+                                      </button> */}
                                       </div>
                 
                 
