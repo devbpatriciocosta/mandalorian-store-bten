@@ -83,11 +83,11 @@ const CartPage = () => {
   return (
     <Layout>
 
-      <div className="container">
+      <div className="container" >
             <div className="row">
-            <div className="col-md-12">
-                <h1 className="text-center bg-light p-2 mb-1">
-                {`E aí, ${auth?.token && auth?.user?.name}`}
+            <div className="col-md-12" style={{ backgroundColor: 'gray' }}>
+                <h1 className="text-center p-2 mb-1" style={{ backgroundColor: 'gray' }} >
+                  {`E aí ${auth?.token && auth?.user?.name}`}
                 </h1>
                 <h4 className="text-center">
                 {cart?.length
@@ -102,24 +102,29 @@ const CartPage = () => {
             <div className="col-md-8">
                 {cart?.map((p) => (
                 <div className="row mb-2 p-3 card flex-row">
+
                     <div className="col-md-4">
-                    <img
-                        src={`${process.env.REACT_APP_API}/api/v1/product/get-product-photo/${p._id}`}
-                        className="card-img-top"
-                        alt={p.name}
-                        
-                    />
+                      <img
+                          src={`${process.env.REACT_APP_API}/api/v1/product/get-product-photo/${p._id}`}
+                          className="card-img-top"
+                          alt={p.name}
+                          style={{ width: '250px', height: '240px', borderRadius:'20px' }}
+                      />
                     </div>
-                    <div className="col-md-8">
-                    <p>{p.name}</p>
-                    <p>{p.description.substring(0, 30)}</p>
-                    <p>Preço: R${p.price}</p>
-                    <button
-                        className="btn btn-danger"
-                        onClick={() => removeCartItem(p._id)}
-                    >
-                        Remover
-                    </button>
+
+                    <div className="col-md-8" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+                      <p><strong>{p.name}</strong></p>
+                      <p>{p.description}</p>
+                      <p className="card-text card-text-price">
+                        <strong>R${p.price}</strong>
+                      </p>
+
+                      <button
+                          className="btn btn-danger"
+                          onClick={() => removeCartItem(p._id)}
+                      >
+                          Remover
+                      </button>
                     </div>
                 </div>
                 ))}
@@ -128,7 +133,7 @@ const CartPage = () => {
                 <h2>Resumo da compra</h2>
                 <p>Total | Checkout | Pagamento</p>
                 <hr />
-                <h4>Total : R${totalPrice()} </h4>
+                <h4>Total: R{totalPrice()} </h4>
                 {auth?.user?.address ? (
                 <>
                     <div className="mb-3">

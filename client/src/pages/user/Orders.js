@@ -25,13 +25,13 @@ const Orders = () => {
 
   return (
     <Layout title={"Minhas Compras - The Mandalorian Store"}>
-        <div className="container-flui p-3 m-3 dashboard">
+        <div className="container-flui styledPadding dashboard">
         <div className="row">
-          <div className="col-md-3">
+          <div className="col-md-3" style={{ paddingLeft: '100px' }}>
             <UserMenu />
           </div>
-          <div className="col-md-9">
-            <h1 className="text-center">Suas compras</h1>
+          <div className="col-md-8">
+            <h1 className="text-center">Minhas compras</h1>
             {orders?.map((o, i) => {
               return (
                 <div className="border shadow">
@@ -60,19 +60,24 @@ const Orders = () => {
                   <div className="container">
                     {o?.products?.map((p, i) => (
                       <div className="row mb-2 p-3 card flex-row" key={p._id}>
+                        
                         <div className="col-md-4">
-                          <img
-                            src={`${process.env.REACT_APP_API}/api/v1/product/get-product-photo/${p._id}`}
-                            className="card-img-top"
-                            alt={p.name}
-                            
-                          />
-                        </div>
-                        <div className="col-md-8">
-                          <p>{p.name}</p>
-                          <p>{p.description}</p>
-                          <p>Preço: R${p.price}</p>
-                        </div>
+                      <img
+                          src={`${process.env.REACT_APP_API}/api/v1/product/get-product-photo/${p._id}`}
+                          className="card-img-top"
+                          alt={p.name}
+                          style={{ width: '250px', height: '240px', borderRadius:'20px' }}
+                      />
+                    </div>
+
+                    <div className="col-md-8" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+                      <p><strong>{p.name}</strong></p>
+                      <p>{p.description}</p>
+                      <p className="card-text card-text-price">
+                        <strong>R${p.price}</strong>
+                      </p>
+                    </div>
+
                       </div>
                     ))}
                   </div>

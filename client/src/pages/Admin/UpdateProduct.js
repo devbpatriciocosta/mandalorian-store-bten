@@ -96,7 +96,7 @@ const UpdateProduct = () => {
             toast.error(data?.message);
           } else {
             toast.success("Produto atualizado com sucesso");
-            navigate("/dashboard/admin/products");
+            navigate("/dashboard/admin");
           }
         } catch (error) {
           console.log(error);
@@ -126,7 +126,7 @@ const UpdateProduct = () => {
 
   return (
     <Layout title={'Equipamentos cadastrados'}>
-        <div className="container-fluid m-3 p-3">
+        <div className="container-fluid styledPadding">
          <div className="row"> 
             <div className="col-md-3">
                 <AdminMenu />
@@ -139,7 +139,6 @@ const UpdateProduct = () => {
                 <Select 
                     bordered={false} 
                     placeholder="Escolha uma categoria" 
-                     
                     showSearch 
                     className="form-select mb-3" 
                     onChange={(value) => {
@@ -156,7 +155,7 @@ const UpdateProduct = () => {
 
 
                 <div className="mb-3">
-                <label className="btn btn-outline-secondary col-md-12">
+                <label className="btn btn-outline-secondary btn-light col-md-12">
                   {photo ? photo.name : "Upload Photo"}
                   <input
                     type="file"
@@ -175,6 +174,7 @@ const UpdateProduct = () => {
                       alt="product_photo"
                       height={"200px"}
                       className="img img-responsive"
+                      style={{ width: '210px', height: '240px', borderRadius:'20px' }}
                     />
                   </div>
                 ) : (
@@ -184,6 +184,7 @@ const UpdateProduct = () => {
                       alt="product_photo"
                       height={"200px"}
                       className="img img-responsive"
+                      style={{ width: '210px', height: '240px', borderRadius:'20px' }}
                     />
                   </div>
                 )}
@@ -273,6 +274,7 @@ const UpdateProduct = () => {
                     />
                   </div>
 
+                <div style={{ display:'flex', gap:'10px', justifyContent:'center' }}>
                   <div className="mb-3">
                     <button className="btn btn-primary" onClick={handleUpdate}>
                       Atualizar equipamento
@@ -284,6 +286,7 @@ const UpdateProduct = () => {
                         Deletar equipamento
                     </button>
                   </div>
+                </div>
 
                 </div>
             </div>

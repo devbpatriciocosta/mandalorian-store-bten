@@ -77,13 +77,13 @@ const NewProduct = () => {
 
   return (
     <Layout title={'Dashboard - Novo Equipamento'}>
-        <div className="container-fluid m-3 p-3">
+        <div className="container-fluid styledPadding">
          <div className="row"> 
             <div className="col-md-3">
                 <AdminMenu />
             </div>
             <div className="col-md-9">
-                <h1>Add um novo produto aí Mandalorian carai</h1>
+                <h1>Adicionar um novo produto</h1>
                 <div className="m-1 w-75"> 
                   <Select 
                     bordered={false} 
@@ -100,7 +100,7 @@ const NewProduct = () => {
                   </Select>
 
                   <div className="mb-3">
-                    <label className="btn btn-outline-secondary col-md-12">
+                    <label className="btn btn-outline-secondary btn-light col-md-12">
                       {photo ? photo.name : "Upload Photo"}
                       <input
                         type="file"
@@ -149,7 +149,7 @@ const NewProduct = () => {
                     <input
                       type="number"
                       value={price}
-                      placeholder="Preço do quipamento"
+                      placeholder="Preço do equipamento"
                       className="form-control"
                       onChange={(e) => setPrice(e.target.value)}
                     />
@@ -176,8 +176,8 @@ const NewProduct = () => {
                         setIsAvailable(value);
                       }}
                     >
-                      <Option value="0">No</Option>
-                      <Option value="1">Yes</Option>
+                      <Option value="0">Não</Option>
+                      <Option value="1">Sim</Option>
                     </Select>
                   </div>
 
@@ -192,8 +192,8 @@ const NewProduct = () => {
                         setShipping(value);
                       }}
                     >
-                      <Option value="0">No</Option>
-                      <Option value="1">Yes</Option>
+                      <Option value="0">Não</Option>
+                      <Option value="1">Sim</Option>
                     </Select>
                   </div>
 

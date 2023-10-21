@@ -10,22 +10,24 @@ const AdminDashboard = () => {
   return (
 
     <Layout title={"Dashboard - Administrador"}>
-      <div className="container-fluid m-3 p-3"></div>
-      <div className="row"> 
-          <div className="col-md-3">
-              <AdminMenu />
-          </div>
-          <div className="col-md-9">
+    <div className="container-fluid styledPadding">
+       <div className="row">
 
-            <div className="card w-75 p-3">
-              <h3> Nome do Administrador: {auth?.user?.name}</h3>
-              <h3> Email do Administrador: {auth?.user?.email}</h3>
-              <h3> Contato do Administrador: {auth?.user?.phone}</h3>
-            </div>
-
-          </div>
-      </div>
-    </Layout>
+           <div className="col-md-3"> 
+               <AdminMenu />
+           </div>
+           
+           <div className="text-center col-md-9"> 
+              <div className="card w-75 p-3">
+                 <h3 style={{ borderBottom: '1px solid #ccc', paddingBottom: '10px', backgroundColor: 'gainsboro' }}> Olá, {auth?.user?.name}! <br></br> Seja bem-vindo(a) ao seu perfil</h3>
+                 <h3> <strong>Seu Email:</strong> {auth?.user?.email}</h3>
+                 <h3> <strong>Seu Contato: </strong>{auth?.user?.phone}</h3>
+                 <h3> <strong>Seu Endereço: </strong>{auth?.user?.address}</h3>
+              </div>
+           </div>
+       </div>
+   </div>
+</Layout>
   )
 }
 

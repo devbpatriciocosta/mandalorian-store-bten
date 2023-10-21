@@ -54,15 +54,15 @@ const Profile = () => {
 
   return (
     <Layout title={"Meu perfil - The Mandalorian Store"}>
-         <div className="container-fluid m-3 p-3">
+         <div className="container-fluid styledPadding">
         <div className="row">
           <div className="col-md-3">
             <UserMenu />
           </div>
-          <div className="col-md-9">
+          <div className="col-md-9" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <div className="form-container ">
               <form onSubmit={handleSubmit}>
-                <h4 className="title">Meu perfil</h4>
+                <h4 className="title">Editar dados</h4>
                 <div className="mb-3">
                   <input
                     type="text"

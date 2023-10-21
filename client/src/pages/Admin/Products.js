@@ -28,17 +28,21 @@ const Products = () => {
 
   return (
     <Layout>
-        <div className="row">
+        <div className="container-fluid row styledPadding">
 
             <div className="col-md-3">
                 <AdminMenu />
             </div>
 
             <div className="col-md-9">
-                <h1 className="text-center">
-                    Equipamentos
+                <h1 className="text-center" style={{ display:'flex' }}>
+                    Equipamentos existentes no banco de dados
                 </h1>
-                <div className="d-flex">
+                <h6 className="text-center" style={{ display:'flex' }}>
+                    (Clique no equipamento para edita-lo)
+                </h6>
+                
+                <div className="d-flex flex-wrap">
                     {products?.map((p) => (
                     <Link
                         key={p._id}
@@ -46,16 +50,27 @@ const Products = () => {
                         className="product-link"
                         >
                         <div className="card m-2" style={{ width: "18rem" }}>
+                        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor:"white" , borderRadius:'20px'}}> 
                             <img
                                 src={`${process.env.REACT_APP_API}/api/v1/product/get-product-photo/${p._id}`}
                                 className="card-img-top"
                                 alt={p.name}
+                                style={{ width: '210px', height: '240px' }}
                             />
-                            <div className="card-body">
-                                <h5 className="card-title">{p.name}</h5>
-                                <p className="card-text">{p.description}</p>
-                                <p className="card-text">{p.price}</p>
-                                <p className="card-text">{p.rating}</p>
+                        </div>
+                        <div className="card-body" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection:'column'}}>
+                      <h5 className="card-title" style={{ width: '100%', height: '60px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                        {p.name}
+                      </h5>
+                      <p className="card-text" style={{ width: '100%', height: '90px', display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
+                        {p.description}
+                      </p>
+                      <p className="card-text card-text-price">
+                        <strong>R${p.price}</strong>
+                      </p>
+                      <p className="card-text">
+                        <strong>Nota: </strong>{p.rating}
+                      </p>
                             </div>
                         </div>
                     </Link>

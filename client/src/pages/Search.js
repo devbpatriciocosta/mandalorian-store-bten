@@ -32,13 +32,15 @@ const Search = () => {
                   <p className="card-text">
                     {p.description}
                   </p>
-                  <p className="card-text">
-                    {p.price}
-                  </p>
+                  <p className="card-text card-text-price">
+                        <strong>R${p.price}</strong>
+                      </p>
                   <p className="card-text">
                     {p.rating}
                   </p>
-                  <p className="card-text"> $ {p.price}</p>
+                  <p className="card-text card-text-price">
+                        <strong>R${p.price}</strong>
+                      </p>
                   <button class="btn btn-primary ms-1">Saber mais</button>
                   <button class="btn btn-secondary ms-1">Carrinho</button>
                 </div>

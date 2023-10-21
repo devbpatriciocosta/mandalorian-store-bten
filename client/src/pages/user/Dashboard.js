@@ -9,18 +9,17 @@ const Dashboard = () => {
 
   return (
     <Layout title={"Dashboard - The Mandalorian Store"}>
-         <div className="container-fluid m-3 p-3">
+         <div className="container-fluid styledPadding">
             <div className="row">
                 <div className="col-md-3"> 
                     <UserMenu />
                 </div>
-                
-                <div className="col-md-9"> 
+                <div className="text-center col-md-9"> 
                    <div className="card w-75 p-3">
-                      <h3> Olá, {auth?.user?.name}! Seja bem-vindo ao seu perfil</h3>
-                      <h3> Seu Email: {auth?.user?.email}</h3>
-                      <h3> Seu Contato: {auth?.user?.phone}</h3>
-                      <h3> Seu Endereço: {auth?.user?.address}</h3>
+                      <h3 style={{ borderBottom: '1px solid #ccc', paddingBottom: '10px', backgroundColor: 'gainsboro' }}> Olá, {auth?.user?.name}! <br></br> Seja bem-vindo(a) ao seu perfil</h3>
+                      <h3> <strong>Seu Email:</strong> {auth?.user?.email}</h3>
+                      <h3> <strong>Seu Contato: </strong>{auth?.user?.phone}</h3>
+                      <h3> <strong>Seu Endereço: </strong>{auth?.user?.address}</h3>
                    </div>
                 </div>
             </div>

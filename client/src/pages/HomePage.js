@@ -115,7 +115,7 @@ const HomePage = () => {
   return (
     <div>
         <Layout title={"The Mandalorian Store - Compre agora!"}>
-            <div className="container-fluid row mt-3">
+            <div className="container-fluid row styledPadding" >
 
             <div className="col-md-2">
               <h4 className="text-center">Filtrar produtos por categoria</h4>
@@ -154,43 +154,64 @@ const HomePage = () => {
 
             </div>
 
-            <div className="col-md-9">
-              <h1 className="text-center">Nossos produtos</h1>
+            <div className="col-md-9 " style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+              <h1>This is the WAY!</h1>
+                <img
+                  src="icons/mandaloriaIcon.png"
+                  alt="Icon"
+                  width="250"
+                  height="250"
+                  style={{ borderRadius: "50%" }}
+                />
+              
               <div className="d-flex flex-wrap">
                 {products?.map((p) => (
                   <div className="card m-2" style={{ width: "18rem" }}>
-                    <img
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor:"white" , borderRadius:'20px'}}> 
+                      <img
                       src={`${process.env.REACT_APP_API}/api/v1/product/get-product-photo/${p._id}`}
                       className="card-img-top"
                       alt={p.name}
+                      style={{ width: '210px', height: '240px' }}
                     />
+                    </div>
+                    
 
-                    <div className="card-body">
-                      <h5 className="card-title">
+                    <div className="card-body" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection:'column'}}>
+                      <h5 className="card-title" style={{ width: '100%', height: '60px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                         {p.name}
                       </h5>
-                      <p className="card-text">
+                      <p className="card-text" style={{ width: '100%', height: '90px', display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
                         {p.description}
                       </p>
-                      <p className="card-text">
-                        R$ {p.price}
+                      <p className="card-text card-text-price">
+                        <strong>R$ {p.price}</strong>
                       </p>
-
-                      <button class="btn btn-primary ms-1" onClick={() => navigate(`/product/${p.slug}`)}>Saber mais</button>
-                      <button
-                    className="btn btn-secondary ms-1"
-                    onClick={() => {
-                      setCart([...cart, p]);
-                      localStorage.setItem(
-                        "cart",
-                        JSON.stringify([...cart, p])
-                      );
-                      toast.success("Equipamento adicionado ao carrinho");
-                    }}
-                  >
-                    Carrinho
-                  </button>
-                    
+                      <p className="card-text">
+                        <strong>Nota: </strong>{p.rating}
+                      </p>
+                      
+                      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}> 
+                        <button 
+                          class="btn btn-primary ms-1" 
+                          onClick={() => navigate(`/product/${p.slug}`)}>
+                            Saber mais
+                        </button>
+                        <button
+                            className="btn btn-secondary ms-1"
+                            onClick={() => {
+                              setCart([...cart, p]);
+                              localStorage.setItem(
+                                "cart",
+                                JSON.stringify([...cart, p])
+                              );
+                              toast.success("Equipamento adicionado ao carrinho");
+                            }}
+                          >
+                            Carrinho
+                          </button>
+                        </div>
+                          
                     </div>
                   </div>
                 ))}
@@ -199,7 +220,7 @@ const HomePage = () => {
               <div className="m-2 p-3">
                 {products && products.length < total && (
                   <button
-                    className="btn btn-warning"
+                    className="btn btn-warning btn-light"
                     onClick={(e) => {
                       e.preventDefault();
                       setPage(page + 1);

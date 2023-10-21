@@ -92,14 +92,16 @@ const NewCategory = () => {
 
   return (
     <Layout title={'Dashboard - Nova Categoria'}>
-      <div className="container-fluid m-3 p-3">
+      <div className="container-fluid styledPadding">
         <div className="row">
+
           <div className="col-md-3">
             <AdminMenu />
           </div>
-          <div className="col-md-9">
-            <h1>Adicionar uma nova categoria</h1>
-            <div className="p-3 w-50">
+          
+          <div className=" text-center col-md-9">
+            <h1 style={{ display:'flex' }} >Adicionar uma nova categoria</h1>
+            <div className="p-3 w-75">
               <CategoryForm handleSubmmit={handleSubmit} value={name} setValue={setName} />
             </div>
             <div className="w-75">
@@ -140,8 +142,8 @@ const NewCategory = () => {
               </table>
             </div>
             <Modal onCancel={() => setVisible(false)} footer={null} visible={visible}> 
-  <CategoryForm value={updatedName} setValue={setUpdatedName} handleSubmmit={handleUpdate} />
-</Modal>
+              <CategoryForm value={updatedName} setValue={setUpdatedName} handleSubmmit={handleUpdate} />
+            </Modal>
           </div>
         </div>
       </div>

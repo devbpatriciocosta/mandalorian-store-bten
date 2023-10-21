@@ -119,7 +119,7 @@ export const updateProductController = async (req, res) => {
 //Controller to GET all products
 export const getProductsController = async (req, res) => {
     try {
-        const products = await productsDetailsModel.find({}).populate('category').select("-photo").limit(12).sort({createdAt:-1})
+        const products = await productsDetailsModel.find({}).populate('category').select("-photo").limit(36).sort({createdAt:-1})
         res.status(200).send({
             success: true,
             counTotal: products.length,
@@ -234,7 +234,7 @@ export const productCountController = async (req, res) => {
   // Controller of product initial list on a page
   export const productListController = async (req, res) => {
     try {
-      const perPage = 3;
+      const perPage = 8;
       const page = req.params.page ? req.params.page : 1;
       const products = await productsDetailsModel
         .find({})
@@ -289,7 +289,7 @@ export const searchProductController = async (req, res) => {
           _id: { $ne: pid },
         })
         .select("-photo")
-        .limit(3)
+        .limit(8)
         .populate("category");
       res.status(200).send({
         success: true,

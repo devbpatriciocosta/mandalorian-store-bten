@@ -27,12 +27,12 @@ const SearchInput = () => {
         <input
           className="form-control me-2"
           type="search"
-          placeholder="Search"
+          placeholder="Pesquisar equipamento"
           aria-label="Search"
           value={values.keyword}
           onChange={(e) => setValues({ ...values, keyword: e.target.value })}
         />
-        <button className="btn btn-outline-success" type="submit">
+        <button className="btn serach-btn-styled" type="submit">
           Buscar
         </button>
       </form>
