@@ -7,7 +7,7 @@ import authRoute from './routes/authRoute.js';
 import productsCategoriesRoutes from './routes/productsCategoriesRoute.js';
 import productsDetailsRoute from './routes/productsDetailsRoute.js';
 import cors from 'cors';
-import path from 'parth';
+import path from 'path';
 
 
 //Env Configuration
