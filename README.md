@@ -38,6 +38,9 @@ saber mais sobre os equipamentos e colocar um equipamento no carrinho, ou seja, 
    - Verificar a lista de Equipamentos (Editar);
    - Verificar todos os pedidos feitos pelos usuários e editar detalhes de Status;
 
+     >> Dados de Usuário teste: Login - teste@teste.com.br // Senha - Teste
+     >> Dados de Administrador: Login - admin@gmail.com   // Senha - admin
+
 ---------------------------------------------------------------------------------------------------------------------------------
 ## Tecnologias e dependências utilizadas: 
 ---------------------------------------------------------------------------------------------------------------------------------
