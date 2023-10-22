@@ -28,41 +28,49 @@ saber mais sobre os equipamentos e colocar um equipamento no carrinho, ou seja, 
 6) Uma vez feito o cadastro é necessário fazer o login;
 7) Ao fazer o login, você poderá finalizar a sua compra;
 8) Para finalizar a compra é necessário colocar cartão de crédito pois foi feita a integração com gateway de pagamento;
+   
     >> Info de cartão de crédito teste: Card Number: 4242 4242 4242 4242 / Expire Date: 12/23 / CVC: 123
 
-    >> É importante salientar que o Usuário e o Administrador possuem Dashboards
-9) Na dashboard de usuário é possível editar o perfil e as informações de cadastro, menos o e-mail e verificar os Status do pedido
-10) Na dashboard de ADMIN é possível:
-   - Criar/Editar/Deletar uma categoria;
-   - Criar um Criar/Editar/Deletar um equipamento;
-   - Verificar a lista de Equipamentos (Editar);
-   - Verificar todos os pedidos feitos pelos usuários e editar detalhes de Status;
+    ### É importante salientar que o Usuário e o Administrador possuem Dashboards diferentes
+    
+10) Na dashboard de usuário é possível:
+    - Editar o perfil;
+    - Editar as informações de cadastro, menos o e-mail;
+    - Verificar os Status do pedido.
+11) Na dashboard de ADMIN é possível:
+    - Criar/Editar/Deletar uma categoria;
+    - Criar/Editar/Deletar um equipamento;
+    - Verificar a lista de Equipamentos (Editar);
+    - Verificar todos os pedidos feitos pelos usuários e editar detalhes de status dos pedidos.
 
-     >> Dados de Usuário teste: Login - teste@teste.com.br // Senha - Teste
+   - Dados de acesso
+
+     >> Dados de Usuário teste: Login - teste@teste.com.br // Senha - Teste <br>
+     
      >> Dados de Administrador: Login - admin@gmail.com   // Senha - admin
 
 ---------------------------------------------------------------------------------------------------------------------------------
 ## Tecnologias e dependências utilizadas: 
 ---------------------------------------------------------------------------------------------------------------------------------
-JavaScript
-ReactJS + NodeJS + NextJS + Express
-Mongoose - Mongo DB - Bando de dados não relacional
-Bootstrap 5
-Antd
-Axios
-BCrypt
-Braintree
-concurrently
-Express-Formidable
-JWT - Json Web Token
-Moment
-Morgan
-Nodemon
-React-helmet
-React-hot-toast
-React-router-dom
-React-toastify
-React Icons
+JavaScript <br>
+ReactJS + NodeJS + NextJS + Express <br>
+Mongoose - Mongo DB - Bando de dados não relacional <br>
+Bootstrap 5 <br>
+Antd <br>
+Axios <br>
+BCrypt <br>
+Braintree <br>
+concurrently <br>
+Express-Formidable <br>
+JWT - Json Web Token <br>
+Moment <br>
+Morgan <br>
+Nodemon <br>
+React-helmet <br>
+React-hot-toast <br>
+React-router-dom <br>
+React-toastify <br>
+React Icons <br>
 Slugify
 
 Todas as dependência e pacotes encontram-se no arquivo package.json
