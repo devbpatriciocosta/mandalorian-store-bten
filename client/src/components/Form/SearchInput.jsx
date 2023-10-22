@@ -1,7 +1,9 @@
 import React from "react";
-import { useSearch } from "../../context/search";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
+import { useSearch } from "../../context/search";
+
+import axios from "axios";
 
 const SearchInput = () => {
 
@@ -33,7 +35,7 @@ const SearchInput = () => {
           onChange={(e) => setValues({ ...values, keyword: e.target.value })}
         />
         <button className="btn serach-btn-styled" type="submit">
-          Buscar
+          Pesquisar
         </button>
       </form>
     </div>
