@@ -16,11 +16,7 @@ const orderSchema = new mongoose.Schema(
     status: {
       type: String,
       default: "Not Process",
-      enum: ["Não processada",
-      "Processando",
-      "Enviado",
-      "Entregue",
-      "Cancelada",],
+      enum: ["Not Process", "Processing", "Shipped", "delivered", "cancel"],
     },
   },
   { timestamps: true }

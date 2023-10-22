@@ -1,5 +1,5 @@
-import {useState, useEffect, useContext, createContext} from 'react';
-import axios from 'axios';
+import {useState, useEffect, useContext, createContext} from "react";
+import axios from "axios";
 
 const AuthContext = createContext();
 
@@ -9,7 +9,7 @@ const AuthProvider = ({children}) => {
         token: ""
     });
 
-  //Axios as default 
+  //Axios as default configuration 
     axios.defaults.headers.common['Authorization'] = auth?.token
   
     useEffect(() => {
@@ -32,7 +32,7 @@ const AuthProvider = ({children}) => {
     )
 }
 
-//Criando um custom HOOK
+//To create a react custom HOOK
 const useAuth = () => useContext(AuthContext)
 
 export {useAuth, AuthProvider}

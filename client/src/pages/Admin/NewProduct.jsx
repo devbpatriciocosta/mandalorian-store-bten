@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import Layout from '../../components/Layout/Layout';
-import AdminMenu from '../../components/Layout/AdminMenu';
-import toast from 'react-hot-toast';
-import axios from 'axios';
-import {Select} from 'antd';
+import React, {useState, useEffect} from "react";
+import Layout from "../../components/Layout/Layout";
+import AdminMenu from "../../components/Layout/AdminMenu";
+import toast from "react-hot-toast";
+import axios from "axios";
+import {Select} from "antd";
 import { useNavigate } from "react-router-dom";
 
 
@@ -11,20 +11,20 @@ const {Option} = Select
 
 const NewProduct = () => {
 
-  const [categories, setCategories] = useState([]);
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [category, setCategory] = useState("");
-  const [quantity, setQuantity] = useState("");
-  const [isAvailable, setIsAvailable] = useState("");
-  const [shipping, setShipping] = useState("");
-  const [rating, setRating] = useState("");
-  const [photo, setPhoto] = useState("");
-  // const [slug, setSlug] = useState("");
-  const navigate = useNavigate();
+  const [categories, setCategories]       = useState([]);
+  const [name, setName]                   = useState("");
+  const [description, setDescription]     = useState("");
+  const [price, setPrice]                 = useState("");
+  const [category, setCategory]           = useState("");
+  const [quantity, setQuantity]           = useState("");
+  const [isAvailable, setIsAvailable]     = useState("");
+  const [shipping, setShipping]           = useState("");
+  const [rating, setRating]               = useState("");
+  const [photo, setPhoto]                 = useState("");
 
-  //Get All Category
+  const navigate                          = useNavigate();
+
+  //To Get All Category
   const getAllCategories = async () => {
     try {
       const { data } = await axios.get(
@@ -43,7 +43,7 @@ const NewProduct = () => {
     getAllCategories();
   }, []);
 
-  //create product function
+  //To create product function
   const handleCreate = async (e) => {
     e.preventDefault();
     try {
@@ -58,7 +58,6 @@ const NewProduct = () => {
       productData.append("shipping", shipping);
       productData.append("rating", rating);
       
-      
       const { data } = axios.post(
         `${process.env.REACT_APP_API}/api/v1/product/new-product`,
         productData
@@ -67,7 +66,7 @@ const NewProduct = () => {
         toast.error(data?.message);
       } else {
         toast.success("Equipamento adicionado");
-        navigate("/dashboard/admin/products");
+        navigate("/dashboard/admin");
       }
     } catch (error) {
       console.log(error);
@@ -98,7 +97,6 @@ const NewProduct = () => {
                           </Option>
                     ))}
                   </Select>
-
                   <div className="mb-3">
                     <label className="btn btn-outline-secondary btn-light col-md-12">
                       {photo ? photo.name : "Upload Photo"}
@@ -111,7 +109,6 @@ const NewProduct = () => {
                       />
                     </label>
                   </div>
-
                   <div className="mb-3">
                     {photo && (
                       <div className="text-center">
@@ -124,7 +121,6 @@ const NewProduct = () => {
                       </div>
                     )}
                   </div>
-
                   <div className="mb-3">
                     <input
                       type="text"
@@ -134,7 +130,6 @@ const NewProduct = () => {
                       onChange={(e) => setName(e.target.value)}
                     />
                   </div>
-
                   <div className="mb-3">
                     <textarea
                       type="text"
@@ -144,7 +139,6 @@ const NewProduct = () => {
                       onChange={(e) => setDescription(e.target.value)}
                     />
                   </div>
-
                   <div className="mb-3">
                     <input
                       type="number"
@@ -154,7 +148,6 @@ const NewProduct = () => {
                       onChange={(e) => setPrice(e.target.value)}
                     />
                   </div>
-
                   <div className="mb-3">
                     <input
                       type="number"
@@ -164,7 +157,6 @@ const NewProduct = () => {
                       onChange={(e) => setQuantity(e.target.value)}
                     />
                   </div>
-
                   <div className="mb-3">
                     <Select
                       bordered={false}
@@ -180,7 +172,6 @@ const NewProduct = () => {
                       <Option value="1">Sim</Option>
                     </Select>
                   </div>
-
                   <div className="mb-3">
                     <Select
                       bordered={false}
@@ -196,7 +187,6 @@ const NewProduct = () => {
                       <Option value="1">Sim</Option>
                     </Select>
                   </div>
-
                   <div className="mb-3">
                     <input
                       type="number"
@@ -206,16 +196,14 @@ const NewProduct = () => {
                       onChange={(e) => setRating(e.target.value)}
                     />
                   </div>
-
                   <div className="mb-3">
                     <button className="btn btn-primary" onClick={handleCreate}>
                       Adicionar equipamento
                     </button>
                   </div>
-
                 </div>
             </div>
-        </div>
+          </div>
         </div>
     </Layout>
   )

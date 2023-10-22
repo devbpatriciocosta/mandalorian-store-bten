@@ -7,8 +7,8 @@ import axios from "axios";
 
 const SearchInput = () => {
 
-  const [values, setValues] = useSearch();
-  const navigate = useNavigate();
+  const [values, setValues]     = useSearch();
+  const navigate                = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();

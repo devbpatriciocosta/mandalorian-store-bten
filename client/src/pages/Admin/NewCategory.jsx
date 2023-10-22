@@ -1,18 +1,18 @@
-import React, {useEffect, useState} from 'react';
-import Layout from '../../components/Layout/Layout';
-import AdminMenu from '../../components/Layout/AdminMenu';
-import toast from 'react-hot-toast';
-import axios from 'axios';
-import CategoryForm from '../../components/Form/CategoryForm';
-import { Modal } from 'antd';
+import React, {useEffect, useState} from "react";
+import Layout from "../../components/Layout/Layout";
+import AdminMenu from "../../components/Layout/AdminMenu";
+import toast from "react-hot-toast";
+import axios from "axios";
+import CategoryForm from "../../components/Form/CategoryForm";
+import { Modal } from "antd";
 
 const NewCategory = () => {
-  const [categories, setCategories] = useState([]);
-  const [name, setName] = useState("");
-  const [visible, setVisible] = useState(false)
-  const [loading, setLoading] = useState(false);
-  const [selected, setSelected] = useState(null);
-  const [updatedName, setUpdatedName] = useState("");
+  const [categories, setCategories]     = useState([]);
+  const [name, setName]                 = useState("");
+  const [visible, setVisible]           = useState(false)
+  const [loading, setLoading]           = useState(false);
+  const [selected, setSelected]         = useState(null);
+  const [updatedName, setUpdatedName]   = useState("");
 
 
   const handleSubmit = async (e) => {
@@ -25,10 +25,9 @@ const NewCategory = () => {
         { name }
       );
       if (data?.success) {
-        // Optimistically update the UI
         setCategories([...categories, { _id: data._id, name }]);
         toast.success(`Beleza, criamos a categoria ${name}`);
-        setName(""); // Clear the input field
+        setName(""); 
       } else {
         toast.error(data.message);
       }
@@ -36,7 +35,7 @@ const NewCategory = () => {
       console.log(error);
       toast.error('Aconteceu algo errado aqui!');
     } finally {
-      setLoading(false); // Hide loading indicator
+      setLoading(false); 
     }
   };
 
@@ -94,13 +93,13 @@ const NewCategory = () => {
     <Layout title={'Dashboard - Nova Categoria'}>
       <div className="container-fluid styledPadding">
         <div className="row">
-
           <div className="col-md-3">
             <AdminMenu />
           </div>
-          
           <div className=" text-center col-md-9">
-            <h1 style={{ display:'flex' }} >Adicionar uma nova categoria</h1>
+            <h1 style={{ display:'flex' }} >
+              Adicionar uma nova categoria
+            </h1>
             <div className="p-3 w-75">
               <CategoryForm handleSubmmit={handleSubmit} value={name} setValue={setName} />
             </div>
@@ -123,17 +122,19 @@ const NewCategory = () => {
                         <td>{c.name}</td>
                         <td>
                           <button className="btn btn-primary ms-2" 
-                          onClick={() => {
-                            setVisible(true);
-                            setUpdatedName(c.name);
-                            setSelected(c);
-                            }}
+                            onClick={() => {
+                              setVisible(true);
+                              setUpdatedName(c.name);
+                              setSelected(c);
+                              }}
                             >
                               Editar
-                            </button>
+                          </button>
                           <button className="btn btn-danger ms-2"
-                          onClick={() => {handleDelete(c._id)}}
-                          >Deletar</button>
+                            onClick={() => {handleDelete(c._id)}}
+                            >
+                              Deletar
+                          </button>
                         </td>
                       </tr>
                     ))

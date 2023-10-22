@@ -11,16 +11,16 @@ import { AiFillStar } from "react-icons/ai";
 
 const HomePage = () => {
 
-  const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [checked, setChecked] = useState([]);
-  const [radio, setRadio] = useState([]);
-  const [total, setTotal] = useState(0);
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const [cart, setCart] = useCart();
+  const [products, setProducts]           = useState([]);
+  const [categories, setCategories]       = useState([]);
+  const [checked, setChecked]             = useState([]);
+  const [radio, setRadio]                 = useState([]);
+  const [total, setTotal]                 = useState(0);
+  const [page, setPage]                   = useState(1);
+  const [loading, setLoading]             = useState(false);
+  const [cart, setCart]                   = useCart();
 
-  const navigate = useNavigate();
+  const navigate                          = useNavigate();
 
   //Function to get all categories
   const getAllCategories = async () => {
@@ -118,10 +118,8 @@ const HomePage = () => {
     <div>
         <Layout title={"The Mandalorian Store - Compre agora!"}>
             <div className="container-fluid row styledPadding" >
-
             <div className="col-md-2">
               <h4 className="text-center">Filtrar produtos por categoria</h4>
-              
               <div className="d-flex flex-column">
                 {categories?.map((c) => (
                   <Checkbox
@@ -132,7 +130,6 @@ const HomePage = () => {
                   </Checkbox>
                 ))}
               </div>
-
               {/* price filter */}
               <h4 className="text-center mt-4">Filtrar produtos por preço</h4>
               <div className="d-flex flex-column">
@@ -144,7 +141,6 @@ const HomePage = () => {
                   ))}
                 </Radio.Group>
               </div>
-
               <div className="d-flex flex-column">
                 <button
                   className="btn btn-danger"
@@ -153,9 +149,7 @@ const HomePage = () => {
                   Limpar filtros
                 </button>
               </div>
-
             </div>
-
             <div className="col-md-9 " style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
               <h1>This is the WAY!</h1>
                 <img
@@ -165,7 +159,6 @@ const HomePage = () => {
                   height="250"
                   style={{ borderRadius: "50%" }}
                 />
-              
               <div className="d-flex flex-wrap">
                 {products?.map((p) => (
                   <div className="card m-2" style={{ width: "18rem" }}>
@@ -177,8 +170,6 @@ const HomePage = () => {
                       style={{ width: '210px', height: '240px' }}
                     />
                     </div>
-                    
-
                     <div className="card-body" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection:'column'}}>
                       <h5 className="card-title" style={{ width: '100%', height: '60px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                         {p.name}
@@ -195,9 +186,6 @@ const HomePage = () => {
                           <AiFillStar className="custom-star-icon" style={{ verticalAlign: 'middle' }} />
                         </p>
                       </div>
-
-
-                      
                       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}> 
                         <button 
                           class="btn btn-primary ms-1" 
@@ -218,12 +206,10 @@ const HomePage = () => {
                             Carrinho
                           </button>
                         </div>
-                          
                     </div>
                   </div>
                 ))}
               </div>
-
               <div className="m-2 p-3">
                 {products && products.length < total && (
                   <button
@@ -237,7 +223,6 @@ const HomePage = () => {
                   </button>
                 )}
               </div>
-
             </div>
           </div>
         </Layout>

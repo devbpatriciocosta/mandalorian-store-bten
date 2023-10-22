@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Layout from "./../components/Layout/Layout";
+import Layout from "../components/Layout/Layout";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { useCart } from "../context/cart";
@@ -9,12 +9,13 @@ import { AiFillStar } from "react-icons/ai";
 
 const ProductDetails = () => {
 
-  const params = useParams();
-  const navigate = useNavigate();
-  const [product, setProduct] = useState({});
-  const [relatedProducts, setRelatedProducts] = useState([]);
+  const params                                  = useParams();
+  const navigate                                = useNavigate();
 
-  const [cart, setCart] = useCart();
+  const [product, setProduct]                   = useState({});
+  const [relatedProducts, setRelatedProducts]   = useState([]);
+
+  const [cart, setCart]                         = useCart();
 
   // Initial Product Details config
   useEffect(() => {
@@ -63,34 +64,31 @@ const ProductDetails = () => {
             style={{ width: '210px', height: '240px', borderRadius:"20px" }}
           />
         </div>
-
         <div className="col-md-6 text-center" style={{ display:'flex', gap:'20px', flexDirection:'column', alignItems:'center', justifyContent:'center' }}>
           <h1 className="text-center" style={{ borderBottom: '1px solid black', lineHeight: '70px' }}>Detalhes do Equipamento</h1>
           <h6><strong>Nome:</strong> {product.name}</h6>
           <h6><strong>Descrição: </strong> {product.description}</h6>
           <h6><strong>Preço:</strong> R${product.price}</h6>
           <h6><strong>Categoria:</strong> {product?.category?.name}</h6>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom:'5px'}}>
-                        <p className="card-text" style={{ display: 'inline' }}>
-                          <strong style={{ verticalAlign: 'middle' }}>{product?.rating}</strong>
-                          <AiFillStar className="custom-star-icon" style={{ verticalAlign: 'middle' }} />
-                        </p>
-                      </div>
-
-                      <button
-                                        className="btn btn-secondary ms-1"
-                                        onClick={() => {
-                                          setCart([...cart, product]); // Add the current product to the cart
-                                          localStorage.setItem("cart", JSON.stringify([...cart, product]));
-                                          toast.success("Equipamento adicionado ao carrinho");
-                                        }}
-                                      >
-                                        Carrinho
-                                      </button>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom:'5px'}}>
+              <p className="card-text" style={{ display: 'inline' }}>
+                <strong style={{ verticalAlign: 'middle' }}>{product?.rating}</strong>
+                <AiFillStar className="custom-star-icon" style={{ verticalAlign: 'middle' }} />
+              </p>
+            </div>
+            <button
+              className="btn btn-secondary ms-1"
+              onClick={() => {
+              setCart([...cart, product]); 
+                 localStorage.setItem("cart", JSON.stringify([...cart, product]));
+                 toast.success("Equipamento adicionado ao carrinho");
+               }}
+               >
+               Carrinho
+             </button>
         </div>
       </div>
       <hr />
-
       <div className="row container" >
         <h2>Talvez você também queira</h2>
         {relatedProducts.length < 1 && (
@@ -99,7 +97,6 @@ const ProductDetails = () => {
         <div className="d-flex flex-wrap">
           {relatedProducts?.map((p) => (
             <div className="card m-2" style={{ width: "18rem" }}>
-              
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor:"white" , borderRadius:'20px'}}> 
                 <img
                   src={`${process.env.REACT_APP_API}/api/v1/product/get-product-photo/${p?._id}`}
@@ -108,7 +105,6 @@ const ProductDetails = () => {
                   style={{ width: '210px', height: '240px' }}
                 />
               </div>
-
               <div className="card-body" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection:'column'}}>
               <h5 className="card-title" style={{ width: '100%', height: '60px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                         {p.name}
@@ -119,28 +115,14 @@ const ProductDetails = () => {
                       <p className="card-text card-text-price">
                         <strong>R${p.price}</strong>
                       </p>
-
                       <div>
                         <button
-                                        className="btn btn-primary ms-1"
-                                        onClick={() => navigate(`/product/${p.slug}`)}
-                                      >
-                                        Saber mais
-                                      </button>
-                                      {/* <button
-                                        className="btn btn-secondary ms-1"
-                                        onClick={() => {
-                                          setCart([...cart, product]); // Add the current product to the cart
-                                          localStorage.setItem("cart", JSON.stringify([...cart, product]));
-                                          toast.success("Equipamento adicionado ao carrinho");
-                                        }}
-                                      >
-                                        Carrinho
-                                      </button> */}
-                                      </div>
-                
-                
-
+                           className="btn btn-primary ms-1"
+                           onClick={() => navigate(`/product/${p.slug}`)}
+                          >
+                          Saber mais
+                        </button>
+                      </div>
               </div>
             </div>
           ))}

@@ -11,9 +11,9 @@ import SearchInput from "../Form/SearchInput";
 
 const Header = () => {
 
-    const [auth, setAuth] = useAuth();
-    const [cart] = useCart();
-    const categories = useCategory();
+    const [auth, setAuth]   = useAuth();
+    const [cart]            = useCart();
+    const categories        = useCategory();
 
     const handleLogout = () => {
         setAuth({

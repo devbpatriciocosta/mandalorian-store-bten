@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "./../components/Layout/Layout";
+import Layout from "../components/Layout/Layout";
 
 const About = () => {
   return (
@@ -8,10 +8,10 @@ const About = () => {
         <div className="col-md-8">
           <h1 style={{ paddingTop:'50px' }}>Sobre nós: A jornada Mandaloriana</h1>
           <div style={{ display:'flex', gap:'50px' }}>
-          <img
-                src="icons/mandalorianContact.jpg"
-                alt="contactus"
-                style={{ width: "300px", borderRadius: '20px' }}
+            <img
+                  src="icons/mandalorianContact.jpg"
+                  alt="contactus"
+                  style={{ width: "300px", borderRadius: '20px' }}
             />
           <p className="text-justify mt-2">
           Bem-vindo à nossa loja de equipamentos Mandalorianos, um lugar onde os guerreiros mais destemidos e apaixonados pela galáxia encontram tudo o que precisam para enfrentar desafios, desbravar fronteiras e manter a tradição viva. Aqui na "Jornada Mandaloriana," estamos dedicados a fornecer o melhor em tecnologia, armaduras e acessórios que uma alma guerreira precisa para seguir a trilha da honra e da resistência.
@@ -25,7 +25,6 @@ Na "Jornada Mandaloriana," acreditamos na importância da tradição e na capaci
 Nossa equipe é composta por especialistas em cultura Mandaloriana, apaixonados por compartilhar seu conhecimento e ajudá-lo a encontrar o equipamento perfeito para suas necessidades. 
           </p>
           </div>
-        
         </div>
       </div>
     </Layout>

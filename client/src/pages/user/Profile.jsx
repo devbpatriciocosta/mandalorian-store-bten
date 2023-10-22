@@ -15,7 +15,7 @@ const Profile = () => {
   const [phone, setPhone]         = useState("");
   const [address, setAddress]     = useState("");
 
-  //get user data
+  //Use Effect to get user data
   useEffect(() => {
     const { email, name, phone, address } = auth?.user;
       setName(name);
@@ -24,7 +24,7 @@ const Profile = () => {
       setAddress(address);
   }, [auth?.user]);
 
-    // form function
+    // Handle submit of the form function
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
@@ -35,7 +35,6 @@ const Profile = () => {
           phone,
           address,
         });
-
         if (data?.error) {
           toast.error(data?.error);
         } else {
@@ -115,7 +114,6 @@ const Profile = () => {
                     placeholder="Endereço"
                   />
                 </div>
-
                 <button type="submit" className="btn btn-primary">
                   Atualizar
                 </button>

@@ -5,8 +5,8 @@ import axios from "axios";
 
 const CategoryProduct = () => {
 
-  const params = useParams();
-  const navigate = useNavigate();
+  const params                  = useParams();
+  const navigate                = useNavigate();
 
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState([]);
@@ -36,7 +36,6 @@ const CategoryProduct = () => {
         <h6 className="text-center">
             {products?.length} resultados encontrados 
         </h6>
-
         <div className="row">
           <div className="col-md-9 offset-1">
             <div className="d-flex flex-wrap">
@@ -54,7 +53,6 @@ const CategoryProduct = () => {
                       style={{ width: '210px', height: '240px' }}
                     />
                   </div>
-
                   <div className="card-body" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection:'column'}}>
                     <h5 className="card-title" style={{ width: '100%', height: '60px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>{p.name}</h5>
                     <p className="card-text" style={{ width: '100%', height: '90px', display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
@@ -63,33 +61,18 @@ const CategoryProduct = () => {
                     <p className="card-text card-text-price">
                         <strong>R${p.price}</strong>
                       </p>
-
                     <div>
                         <button
-                                        className="btn btn-primary ms-1"
-                                        onClick={() => navigate(`/product/${p.slug}`)}
-                                      >
-                                        Saber mais
-                                      </button>
-                                      {/* <button class="btn btn-secondary ms-1">Carrinho</button> */}
-                                      </div>
+                          className="btn btn-primary ms-1"
+                          onClick={() => navigate(`/product/${p.slug}`)}
+                          >
+                          Saber mais
+                        </button>
+                     </div>
                   </div>
                 </div>
               ))}
             </div>
-            {/* <div className="m-2 p-3">
-            {products && products.length < total && (
-              <button
-                className="btn btn-warning"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setPage(page + 1);
-                }}
-              >
-                {loading ? "Loading ..." : "Loadmore"}
-              </button>
-            )}
-          </div> */}
           </div>
         </div>
       </div>

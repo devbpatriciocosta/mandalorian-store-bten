@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Layout from "./../components/Layout/Layout";
+import Layout from "../components/Layout/Layout";
 import { useCart } from "../context/cart";
 import { useAuth } from "../context/auth";
 import { useNavigate } from "react-router-dom";
@@ -9,11 +9,11 @@ import toast from "react-hot-toast";
 
 const CartPage = () => {
 
-  const [auth, setAuth] = useAuth();
-  const [cart, setCart] = useCart();
-  const [clientToken, setClientToken] = useState("");
-  const [instance, setInstance] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [auth, setAuth]                 = useAuth();
+  const [cart, setCart]                 = useCart();
+  const [clientToken, setClientToken]   = useState("");
+  const [instance, setInstance]         = useState("");
+  const [loading, setLoading]           = useState(false);
 
   const navigate = useNavigate();
 
@@ -82,7 +82,6 @@ const CartPage = () => {
 
   return (
     <Layout>
-
       <div className="container" >
             <div className="row">
             <div className="col-md-12" style={{ backgroundColor: 'gray' }}>
@@ -111,14 +110,12 @@ const CartPage = () => {
                           style={{ width: '250px', height: '240px', borderRadius:'20px' }}
                       />
                     </div>
-
                     <div className="col-md-8" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
                       <p><strong>{p.name}</strong></p>
                       <p>{p.description}</p>
                       <p className="card-text card-text-price">
                         <strong>R${p.price}</strong>
                       </p>
-
                       <button
                           className="btn btn-danger"
                           onClick={() => removeCartItem(p._id)}
@@ -184,7 +181,6 @@ const CartPage = () => {
                     }}
                     onInstance={(instance) => setInstance(instance)}
                   />
-
                   <button
                     className="btn btn-primary"
                     onClick={handlePayment}
@@ -198,7 +194,6 @@ const CartPage = () => {
           </div>
         </div>
       </div>
-
     </Layout>
   );
 };

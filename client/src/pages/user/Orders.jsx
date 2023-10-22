@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import UserMenu from "../../components/Layout/UserMenu";
-import Layout from "./../../components/Layout/Layout";
+import Layout from "../../components/Layout/Layout";
 import axios from "axios";
 import { useAuth } from "../../context/auth";
 import moment from "moment";
@@ -60,25 +60,22 @@ const Orders = () => {
                   <div className="container">
                     {o?.products?.map((p, i) => (
                       <div className="row mb-2 p-3 card flex-row" key={p._id}>
-                        
-                        <div className="col-md-4">
-                      <img
-                          src={`${process.env.REACT_APP_API}/api/v1/product/get-product-photo/${p._id}`}
-                          className="card-img-top"
-                          alt={p.name}
-                          style={{ width: '250px', height: '240px', borderRadius:'20px' }}
-                      />
+                         <div className="col-md-4">
+                            <img
+                                src={`${process.env.REACT_APP_API}/api/v1/product/get-product-photo/${p._id}`}
+                                className="card-img-top"
+                                alt={p.name}
+                                style={{ width: '250px', height: '240px', borderRadius:'20px' }}
+                            />
+                          </div>
+                        <div className="col-md-8" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+                          <p><strong>{p.name}</strong></p>
+                          <p>{p.description}</p>
+                          <p className="card-text card-text-price">
+                            <strong>R${p.price}</strong>
+                          </p>
+                        </div>
                     </div>
-
-                    <div className="col-md-8" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-                      <p><strong>{p.name}</strong></p>
-                      <p>{p.description}</p>
-                      <p className="card-text card-text-price">
-                        <strong>R${p.price}</strong>
-                      </p>
-                    </div>
-
-                      </div>
                     ))}
                   </div>
                 </div>

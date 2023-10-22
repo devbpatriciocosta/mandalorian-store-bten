@@ -6,33 +6,33 @@ import {useNavigate} from 'react-router-dom';
 
 const ForgotPassword = () => {
 
-    const [email, setEmail]         = useState("");
-    const [newPassword, setNewPassword]   = useState("");
-    const [answer, setAnswer]   = useState("");
+    const [email, setEmail]                 = useState("");
+    const [newPassword, setNewPassword]     = useState("");
+    const [answer, setAnswer]               = useState("");
 
-    const navigate                  = useNavigate();
+    const navigate                          = useNavigate();
 
     //Função do formulário 
-const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-        const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/forgot-password`, {email, newPassword, answer});
-        if(res && res.data.success) {
-            toast.success(res.data.message, {
-                duration: 6000, 
-              });
-              
-                navigate('/login')
-        } else { 
-            toast.error(res.data.message, {
-                duration: 10000, 
-              });
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/forgot-password`, {email, newPassword, answer});
+            if(res && res.data.success) {
+                toast.success(res.data.message, {
+                    duration: 6000, 
+                });
+                
+                    navigate('/login')
+            } else { 
+                toast.error(res.data.message, {
+                    duration: 10000, 
+                });
+            }
+        } catch (error) {
+            console.log(error)
+            toast.error("Algo de errado não está certo!")
         }
-    } catch (error) {
-        console.log(error)
-        toast.error("Algo de errado não está certo!")
-    }
-};
+    };
 
   return (
     <Layout title={'Recuperar senha - The Mandalorian Store'}>
@@ -40,8 +40,6 @@ const handleSubmit = async (e) => {
             <form onSubmit={handleSubmit}>
                 <h1 className="title">Recuperando a senha</h1>
                 <h6 className="title">Recupere o acesso a sua conta</h6>
-
-
                 {/* Email */}
                 <div className="mb-3">
                     <input 
@@ -55,7 +53,6 @@ const handleSubmit = async (e) => {
                         autoFocus
                         />
                 </div>
-
                 {/* Pergunta secreta - Dica de senha */}
                 <div className="mb-3">
                     <input 
@@ -69,7 +66,6 @@ const handleSubmit = async (e) => {
                         autoFocus
                         />
                 </div>
-
                 {/* Senha */}
                 <div className="mb-3">
                     <input 
@@ -83,8 +79,6 @@ const handleSubmit = async (e) => {
                         autoFocus
                         />
                 </div>
-                
-              
                 <div className="buttonSend">
                     <button type="submit" className="btn btn-primary">Recuperar</button>
                 </div>

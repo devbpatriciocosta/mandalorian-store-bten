@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import toast from "react-hot-toast";
 import AdminMenu from "../../components/Layout/AdminMenu";
 import Layout from "../../components/Layout/Layout";
 import { useAuth } from "../../context/auth";
@@ -14,11 +13,11 @@ const { Option } = Select;
 const AdminOrders = () => {
 
   const [status, setStatus] = useState([
-    "Não processada",
-    "Processando",
-    "Enviado",
-    "Entregue",
-    "Cancelada",
+    "Not Process",
+    "Processing",
+    "Shipped",
+    "delivered",
+    "cancel",
   ]);
 
   const [changeStatus, setChangeStatus] = useState("");
@@ -48,14 +47,13 @@ const AdminOrders = () => {
       console.log(error);
     }
   };
+
   return (
     <Layout title={"Todos os pedidos"}>
       <div className="row dashboard styledPadding">
-
         <div className="col-md-3">
           <AdminMenu />
         </div>
-
         <div className="col-md-9">
           <h1 className="text-center">Todos os pedidos</h1>
           {orders?.map((o, i) => {
@@ -80,7 +78,7 @@ const AdminOrders = () => {
                           bordered={false}
                           onChange={(value) => handleChange(o._id, value)}
                           defaultValue={o?.status}
-                        >
+                          >
                           {status.map((s, i) => (
                             <Option key={i} value={s}>
                               {s}
@@ -99,7 +97,7 @@ const AdminOrders = () => {
                   {o?.products?.map((p, i) => (
                     <div className="row mb-2 p-3 card flex-row" key={p._id}>
                       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor:"white" , borderRadius:'20px'}}> 
-                          <img
+                        <img
                           src={`${process.env.REACT_APP_API}/api/v1/product/get-product-photo/${p._id}`}
                           className="card-img-top"
                           alt={p.name}
@@ -107,7 +105,6 @@ const AdminOrders = () => {
                         />
                       </div>
                       <div className="card-body" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection:'column'}}>
-                        
                         <h5 className="card-title" style={{ width: '100%', height: '60px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                           {p.name}
                         </h5>
