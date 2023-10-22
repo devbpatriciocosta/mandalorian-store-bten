@@ -178,7 +178,13 @@ font-family: 'Roboto', sans-serif; */
   font-size: 25px;
 }
 
+.custom-icon {
+  color: white;
+}
 
+.custom-navbar {
+  background-color: white;
+}
 
 .btn-primary{
   background-color: #000;
