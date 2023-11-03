@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 const CartPage = () => {
 
   const [auth, setAuth]                 = useAuth();
-  const [cart, setCart]                 = useCart();
+  const { cart, setCart, clearCart }                 = useCart();
   const [clientToken, setClientToken]   = useState("");
   const [instance, setInstance]         = useState("");
   const [loading, setLoading]           = useState(false);
@@ -24,9 +24,9 @@ const CartPage = () => {
       cart?.map((item) => {
         total = total + item.price;
       });
-      return total.toLocaleString("en-US", {
+      return total.toLocaleString("pt-BR", {
         style: "currency",
-        currency: "USD",
+        currency: "BRL",
       });
     } catch (error) {
       console.log(error);
@@ -80,17 +80,27 @@ const CartPage = () => {
     }
   };
 
+  // Function to clear the entire cart
+  // const clearEntireCart = () => {
+  //   if (cart.length > 0) {
+  //     if (window.confirm("Tem certeza que deseja esvaziar o carrinho??")) {
+  //       clearCart(); 
+  //       toast.success("Seu carrinho foi esvaziado!");
+  //     }
+  //   }
+  // };
+
   return (
     <Layout>
       <div className="container" >
             <div className="row">
             <div className="col-md-12" style={{ backgroundColor: 'gray' }}>
                 <h1 className="text-center p-2 mb-1" style={{ backgroundColor: 'gray' }} >
-                  {`E aí ${auth?.token && auth?.user?.name}`}
+                  {`E aí! ${auth?.token && auth?.user?.name}`}
                 </h1>
                 <h4 className="text-center">
                 {cart?.length
-                    ? `Você tem ${cart.length} equipamentos no seu carrinho ${
+                    ? `Você tem ${cart.length} equipamento(s) no seu carrinho ${
                         auth?.token ? "" : "Por favor, faça login ou cadastre-se para comprar"
                     }`
                     : "Seu carrinho está vazio"}
@@ -100,8 +110,7 @@ const CartPage = () => {
             <div className="row">
             <div className="col-md-8">
                 {cart?.map((p) => (
-                <div className="row mb-2 p-3 card flex-row">
-
+                <div key={p._id} className="row mb-2 p-3 card flex-row">
                     <div className="col-md-4">
                       <img
                           src={`${process.env.REACT_APP_API}/api/v1/product/get-product-photo/${p._id}`}
@@ -123,8 +132,21 @@ const CartPage = () => {
                           Remover
                       </button>
                     </div>
+                    
                 </div>
                 ))}
+                {/* <div>
+                  {cart.length > 0 && (
+                    <div> 
+                      <button
+                        className="btn btn-danger"
+                        onClick={clearEntireCart}
+                      >
+                        Esvaziar carrinho
+                      </button>
+                    </div>
+                  )}
+                </div> */}
             </div>
             <div className="col-md-4 text-center">
                 <h2>Resumo da compra</h2>

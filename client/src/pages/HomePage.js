@@ -18,7 +18,7 @@ const HomePage = () => {
   const [total, setTotal]                 = useState(0);
   const [page, setPage]                   = useState(1);
   const [loading, setLoading]             = useState(false);
-  const [cart, setCart]                   = useCart();
+  const { cart, setCart }                   = useCart();
 
   const navigate                          = useNavigate();
 
@@ -161,14 +161,14 @@ const HomePage = () => {
                 />
               <div className="d-flex flex-wrap">
                 {products?.map((p) => (
-                  <div className="card m-2" style={{ width: "18rem" }}>
+                  <div key={p._id} className="card m-2" style={{ width: "18rem" }}>
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor:"white" , borderRadius:'20px'}}> 
                       <img
-                      src={`${process.env.REACT_APP_API}/api/v1/product/get-product-photo/${p._id}`}
-                      className="card-img-top"
-                      alt={p.name}
-                      style={{ width: '210px', height: '240px' }}
-                    />
+                        src={`${process.env.REACT_APP_API}/api/v1/product/get-product-photo/${p._id}`}
+                        className="card-img-top"
+                        alt={p.name}
+                        style={{ width: '210px', height: '240px' }}
+                      />
                     </div>
                     <div className="card-body" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection:'column'}}>
                       <h5 className="card-title" style={{ width: '100%', height: '60px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
@@ -188,7 +188,7 @@ const HomePage = () => {
                       </div>
                       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}> 
                         <button 
-                          class="btn btn-primary ms-1" 
+                          className="btn btn-primary ms-1" 
                           onClick={() => navigate(`/product/${p.slug}`)}>
                             Saber mais
                         </button>

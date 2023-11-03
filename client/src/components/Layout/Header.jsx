@@ -12,7 +12,7 @@ import SearchInput from "../Form/SearchInput";
 const Header = () => {
 
     const [auth, setAuth]   = useAuth();
-    const [cart]            = useCart();
+    const { cart }            = useCart();
     const categories        = useCategory();
 
     const handleLogout = () => {
@@ -55,17 +55,17 @@ const Header = () => {
                          >
                             Categorias
                          </Link>
-                            <ul className="dropdown-menu">
-                                {categories?.map((c) => (
-                                    <li>
-                                        <Link
-                                            className="dropdown-item"
-                                            to={`/category/${c.slug}`}
-                                        >
-                                            {c.name}
-                                        </Link>
-                                    </li>
-                                ))}
+                         <ul className="dropdown-menu">
+                            {categories?.map((c) => (
+                                <li key={c._id}>
+                                <Link
+                                    className="dropdown-item"
+                                    to={`/category/${c.slug}`}
+                                >
+                                    {c.name}
+                                </Link>
+                                </li>
+                            ))}
                             </ul>
                         </li>
                             {!auth.user ? 
